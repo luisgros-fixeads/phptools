@@ -30,9 +30,8 @@ RUN curl -o /tmp/composer-setup.php https://getcomposer.org/installer \
 RUN php /tmp/composer-setup.php --install-dir=bin --filename=composer
 RUN php -r "unlink('/tmp/composer-setup.php');"
 
+RUN composer global require phpunit/phpunit
 RUN composer global require squizlabs/php_codesniffer=3.0.x-dev
-RUN composer global require phpunit/phpunit 
-RUN composer global require sebastian/phpcpd
 RUN composer global require phpmd/phpmd
 RUN composer global require sebastian/phpcpd
 RUN composer global require phploc/phploc
