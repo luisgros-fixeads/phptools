@@ -8,6 +8,8 @@ RUN apk --update add \
 	  apk del build-base && \
 	  rm -rf /var/cache/apk/*
 
+# Composer installation based on official docker image composer/composer
+
 # Memory Limit
 RUN echo "memory_limit=-1" > $PHP_INI_DIR/conf.d/memory-limit.ini
 
@@ -23,20 +25,20 @@ ENV PATH /composer/vendor/bin:$PATH
 # Allow Composer to be run as root
 ENV COMPOSER_ALLOW_SUPERUSER 1
 
-
 RUN curl -o /tmp/composer-setup.php https://getcomposer.org/installer \
-  && curl -o /tmp/composer-setup.sig https://composer.github.io/installer.sig \
-    && php -r "if (hash('SHA384', file_get_contents('/tmp/composer-setup.php')) !== trim(file_get_contents('/tmp/composer-setup.sig'))) { unlink('/tmp/composer-setup.php'); echo 'Invalid installer' . PHP_EOL; exit(1); }"
+ && curl -o /tmp/composer-setup.sig https://composer.github.io/installer.sig \
+ && php -r "if (hash('SHA384', file_get_contents('/tmp/composer-setup.php')) !== trim(file_get_contents('/tmp/composer-setup.sig'))) { unlink('/tmp/composer-setup.php'); echo 'Invalid installer' . PHP_EOL; exit(1); }"
 RUN php /tmp/composer-setup.php --install-dir=bin --filename=composer
 RUN php -r "unlink('/tmp/composer-setup.php');"
 
-RUN composer global require phpunit/phpunit
-RUN composer global require squizlabs/php_codesniffer=3.0.x-dev
+#Use Pear to install phpcs when new release is available, uses half the space on disk.
+RUN composer global require "squizlabs/PHP_CodeSniffer:3.0.x-dev"
+RUN composer global require "phpunit/phpunit=5.5.*"
 RUN composer global require phpmd/phpmd
 RUN composer global require sebastian/phpcpd
 RUN composer global require phploc/phploc
 RUN composer global require friendsofphp/php-cs-fixer
+RUN composer clear-cache
 
 WORKDIR /src
-
 
