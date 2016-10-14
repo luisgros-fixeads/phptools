@@ -43,3 +43,5 @@ RUN composer clear-cache
 
 WORKDIR /src
 
+RUN chown -R ubuntu:ubuntu /src
+RUN chmod -R 700 /src
