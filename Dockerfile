@@ -3,6 +3,7 @@ FROM php:7.1-alpine
 MAINTAINER Luis Pitta Grós <luis.gros@olx.com>
 
 RUN apk --update add \
+          bash \
 	  curl \
 	  git && \
 	  apk del build-base && \
