@@ -2,6 +2,8 @@ FROM php:7.1-alpine
 
 MAINTAINER Luis Pitta Grós <luis.gros@olx.com>
 
+USER root 
+
 RUN apk --update add \
 	  curl \
 	  git && \
