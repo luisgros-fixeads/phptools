@@ -30,12 +30,6 @@ phpcpd is a Copy/Paste Detector (CPD) for PHP code.
 phploc is a tool for quickly measuring the size and analyzing the structure of a PHP project.
 `
 
-[PHP Coding Style Fixer](https://github.com/FriendsOfPHP/PHP-CS-Fixer)
-
-`
-The PHP Coding Standards Fixer tool fixes most issues in your code when you want to follow the PHP coding standards as defined in the PSR-1 and PSR-2 documents and many more.
-`
-
 [PHP Unit](https://github.com/sebastianbergmann/phpunit)
 
 `
