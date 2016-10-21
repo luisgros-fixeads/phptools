@@ -4,6 +4,7 @@
 docker pull luisgros/phptools
 docker run -v $(pwd):/src luisgros/phptools phpcs /path/to/php/file(s) --standard=psr2
 docker run -v $(pwd):/src luisgros/phptools phpmd /path/to/files
+docker run -v $(pwd):/src luisgros/phptools phploc /dir
 ```
 
 [PHP Code_Sniffer](https://github.com/squizlabs/PHP_CodeSniffer)
